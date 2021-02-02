@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% if user.is_authenticated %}
+    {% block content %}
+        <h1>New Chirp</h1>
+            <div>
+                <form action="{% url 'chirp:new_chirp' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="new chirp" id="">
+                    <input type="submit" value="Chirp">
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+    {% else %}
+        <p>Please Login To Chirp</p>
+    {% endif %}

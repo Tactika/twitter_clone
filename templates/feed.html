@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <header>
+        <h1>All Chirps</h1>
+    </header>
+    {% for chirp in chirps %}
+        {% if if user == current_user %}
+            <div class="card">
+                <div class="card-header">
+                    <cite title="Source Title">{{ chirp.created_at }}</cite>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ chirp }}</p>
+                        <footer class="blockquote-footer">
+                            {{ chirp.user }}
+                            <span class="float-right">
+                                {% if chirp.likes == None %}
+                                    <p>No Likes Yet</p>
+                                {% else %}
+                                    <p>
+                                        {{ chirp.likes }} Likes
+                                    </p>
+                                {% endif %}
+                                </span>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</main>
+{% endblock %}
